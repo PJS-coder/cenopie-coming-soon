@@ -33,6 +33,21 @@ html {
 
 /* Mobile-specific performance optimizations */
 @media (max-width: 768px) {
+    html {
+        overflow: auto !important;
+        height: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        overflow: auto !important;
+        height: auto !important;
+        min-height: 100vh;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+    }
+    
     * {
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -107,6 +122,13 @@ body {
     body {
         height: 100vh;
         overflow: hidden;
+    }
+    
+    .container {
+        height: 100vh;
+        overflow: hidden;
+        min-height: 100vh;
+        justify-content: center;
     }
 }
 
@@ -299,6 +321,19 @@ body {
     align-items: center;
     transform-style: preserve-3d;
     animation: containerFloat 30s ease-in-out infinite;
+}
+
+/* Mobile container adjustments */
+@media (max-width: 768px) {
+    .container {
+        min-height: auto !important;
+        height: auto !important;
+        padding: 40px 20px 60px 20px;
+        justify-content: flex-start !important;
+        align-items: center;
+        box-sizing: border-box;
+        overflow: visible;
+    }
 }
 
 /* Desktop specific container styles */
@@ -997,17 +1032,19 @@ h1 .highlight {
 /* Mobile Portrait (320px - 480px) */
 @media (max-width: 480px) {
     html {
-        overflow: auto;
+        overflow: auto !important;
+        height: auto !important;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
     }
     
     body {
-        align-items: flex-start;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
         background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-        padding: 20px 0;
-        overflow: auto;
-        height: auto;
+        padding: 0;
+        overflow: auto !important;
+        height: auto !important;
         min-height: 100vh;
         transform: translateZ(0);
         will-change: scroll-position;
@@ -1021,18 +1058,22 @@ h1 .highlight {
     }
     
     .container {
-        padding: 20px 15px;
+        padding: 40px 15px 80px 15px;
         max-width: 100%;
         width: 100%;
-        min-height: 100vh;
+        min-height: auto;
+        height: auto;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
         transform: translateZ(0);
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
         will-change: transform;
         -webkit-transform: translate3d(0, 0, 0);
+        box-sizing: border-box;
+        overflow: visible;
     }
     
     .logo-group {

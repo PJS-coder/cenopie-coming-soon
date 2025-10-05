@@ -9,7 +9,7 @@ const Footer = () => {
 
   return (
     <div className="footer">
-      <p>© 2025 Canopie. All rights reserved. | Contact us for any queries.</p>
+      <p>© 2025 Cenopie. All rights reserved. | Contact us for any queries.</p>
       <div className="support-links">
         {supportEmails.map((email, index) => (
           <a key={index} href={`mailto:${email}`}>

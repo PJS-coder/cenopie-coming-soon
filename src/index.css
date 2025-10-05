@@ -13,6 +13,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 html {
@@ -22,6 +29,40 @@ html {
     -webkit-overflow-scrolling: touch;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+}
+
+/* Mobile-specific performance optimizations */
+@media (max-width: 768px) {
+    * {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+    }
+    
+    /* Disable heavy animations on mobile */
+    .effect-circle-1, .effect-circle-2,
+    .logo-group, .logo, h1, .tagline,
+    .main-message, .footer {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .logo:hover, h1:hover, .tagline:hover,
+    .main-message:hover, .footer:hover {
+        transform: none !important;
+    }
+    
+    /* Force hardware acceleration for scrollable elements */
+    html, body, .container {
+        -webkit-overflow-scrolling: touch;
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        will-change: scroll-position;
+        contain: layout style paint;
+    }
 }
 
 /* Desktop overflow hidden, mobile allows scroll */
@@ -802,8 +843,12 @@ h1 .highlight {
         -webkit-overflow-scrolling: touch;
     }
     
+/* Mobile Landscape & Small Tablet (481px - 767px) */
+@media (max-width: 767px) and (min-width: 481px) {
     html {
         overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
     
     body {
@@ -820,6 +865,8 @@ h1 .highlight {
         backface-visibility: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        overscroll-behavior: contain;
+        touch-action: pan-y;
     }
     
     .container {
@@ -949,17 +996,10 @@ h1 .highlight {
 
 /* Mobile Portrait (320px - 480px) */
 @media (max-width: 480px) {
-    html, body {
-        width: 100%;
-        max-width: 100vw;
-        min-height: 100vh;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-    }
-    
     html {
         overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
     
     body {
@@ -976,6 +1016,8 @@ h1 .highlight {
         backface-visibility: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        overscroll-behavior: contain;
+        touch-action: pan-y;
     }
     
     .container {
@@ -1213,4 +1255,5 @@ h1 .highlight {
         font-size: 0.65rem;
         padding: 3px 6px;
     }
+}
 }
